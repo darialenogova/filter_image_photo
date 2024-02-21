@@ -3,47 +3,31 @@ from PIL import ImageOps
 from PIL import ImageFilter
 import argparse
 
-# image = Image.open("cat_image.jpg")
-# print(image.format)
-# new_image = image.rotate(30)
-# new_image.save("new_image.jpg")
-# image.save("image_test.png", "png")
-
-# img = Image.new('RGBA', (91, 91), 'white')
-# draw = ImageDraw.Draw(img)
-# draw.ellipse((0, 0, 90, 90), 'yellow', 'blue')
-# draw.ellipse((25, 20, 35, 30), 'yellow', 'blue')
-# draw.ellipse((50, 20, 60, 30), 'yellow', 'blue')
-# draw.arc((20, 40, 70, 70), 0, 180, 0)
-# img.save('draw-smile.png')
-
-
-
 def apply_bw_filter(photo):
     photo = photo.convert('L')
-    photo.save("bw_photo.jpg")
+    photo.save("image/bw_photo.jpg")
 
 
 def apply_contrast_filter(photo):
     photo = ImageOps.autocontrast(photo, cutoff = 10)
-    photo.save("contrast_photo.jpg")
+    photo.save("image/contrast_photo.jpg")
 
 
 def apply_blur_filter(photo):
     photo = photo.filter(ImageFilter.GaussianBlur(radius = 2.4))
-    photo.save("blur_photo.jpg")
+    photo.save("image/blur_photo.jpg")
 
 
 def apply_noise_filter(photo):
     photo = photo.filter(ImageFilter.MedianFilter(size = 9))
-    photo.save("noise_photo.jpg")
+    photo.save("image/noise_photo.jpg")
 
 
 def apply_border_filter(photo):
     width, height = photo.size
     photo = photo.transform((width + 100, height + 100), Image.EXTENT,
         (-10, -10, width + 10, height + 10), Image.BILINEAR)
-    photo.save("border_photo.jpg")
+    photo.save("image/border_photo.jpg")
 
 
 def apply_sepia_filter(photo):
@@ -57,7 +41,7 @@ def apply_sepia_filter(photo):
             new_b = int(r * 0.272 + g * 0.534 + b * 0.131)
             sepia_r, sepia_g, sepia_b = (min(new_r, 255), min(new_g, 255), min(new_b, 255))
             sepia_image.putpixel((x,y), (sepia_r, sepia_g, sepia_b))
-    sepia_image.save("sepia_photo.jpg")
+    sepia_image.save("image/sepia_photo.jpg")
 
 
 def main():
@@ -131,7 +115,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-#python main.py --file_name "photo_1.jpg"
+
 
 
 
