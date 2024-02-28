@@ -1,6 +1,4 @@
-from PIL import Image,ImageDraw
-from PIL import ImageOps
-from PIL import ImageFilter
+from PIL import Image, ImageDraw, ImageOps, ImageFilter
 import argparse
 
 def apply_bw_filter(photo):
@@ -46,7 +44,7 @@ def apply_sepia_filter(photo):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--file_name", help="Получить название файла", default="image.png")
+    parser.add_argument("--file_name", help="Получить название файла", default="image/photo_1.jpg")
     parser.add_argument("--bw_photo", action="store_true", help="чёрно-белый фильтр")
     parser.add_argument("--contrast_photo", action="store_true", help="контрастный фильтр")
     parser.add_argument("--blur_photo", action="store_true", help="размытие фильтр")
