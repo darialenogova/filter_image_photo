@@ -46,71 +46,44 @@ def apply_sepia_filter(photo):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--file_name", help="Получить название файла")
+    parser.add_argument("--file_name", help="Получить название файла", default="image.png")
+    parser.add_argument("--bw_photo", action="store_true", help="чёрно-белый фильтр")
+    parser.add_argument("--contrast_photo", action="store_true", help="контрастный фильтр")
+    parser.add_argument("--blur_photo", action="store_true", help="размытие фильтр")
+    parser.add_argument("--noise_photo", action="store_true", help="медианный фильтр")
+    parser.add_argument("--border_photo", action="store_true", help="фильтр рамки")
+    parser.add_argument("--sepia_photo", action="store_true", help="фильтр сепии")
+
     args = parser.parse_args() 
     print('Название файла:', args.file_name)
-    
-
-    parser.add_argument("--bw_photo", action="store_true", help="чёрно-белый фильтр")
-    
-    args = parser.parse_args() 
-    if args.bw_photo:
-        print(f"Использование черно-белого фильтра:  {args.bw_photo}")
-    else:
-        print(f"Использование черно-белого фильтра:  {args.bw_photo}")
-
-    parser.add_argument("--contrast_photo", action="store_true", help="контрастный фильтр")
-    
-    args = parser.parse_args() 
-    if args.contrast_photo:
-        print(f"Использование контрастного фильтра:  {args.contrast_photo}")
-    else:
-        print(f"Использование контрастного фильтра:  {args.contrast_photo}")
-
-    parser.add_argument("--blur_photo", action="store_true", help="размытие фильтр")
-    
-    args = parser.parse_args() 
-    if args.blur_photo:
-        print(f"Использование фильтра размытия:  {args.blur_photo}")
-    else:
-        print(f"Использование фильтра размытия:  {args.blur_photo}")
-
-    parser.add_argument("--noise_photo", action="store_true", help="медианный фильтр")
-    
-    args = parser.parse_args() 
-    if args.noise_photo:
-        print(f"Использование медианного фильтра:  {args.noise_photo}")
-    else:
-        print(f"Использование медианного фильтра:  {args.noise_photo}")
-
-    parser.add_argument("--border_photo", action="store_true", help="фильтр рамки")
-    
-    args = parser.parse_args() 
-    if args.border_photo:
-        print(f"Использование рамки:  {args.border_photo}")
-    else:
-        print(f"Использование рамки:  {args.border_photo}")
-
-    parser.add_argument("--sepia_photo", action="store_true", help="фильтр сепии")
-    
-    args = parser.parse_args() 
-    if args.sepia_photo:
-        print(f"Использование фильтра сепии:  {args.sepia_photo}")
-    else:
-        print(f"Использование фильтра сепии:  {args.sepia_photo}")
-
     original_photo = Image.open(f"{args.file_name}")
-    filter_list = [
-        apply_bw_filter,
-        apply_contrast_filter,
-        apply_blur_filter,
-        apply_noise_filter,
-        apply_border_filter,
-        apply_sepia_filter
-]
-    for filter in filter_list:
-        filter(original_photo)
-    print("успешно")
+   
+    if args.bw_photo:
+        apply_bw_filter(original_photo)
+    print(f"Использование черно-белого фильтра:  {args.bw_photo}")
+   
+    if args.contrast_photo:
+        apply_contrast_filter(original_photo)
+    print(f"Использование контрастного фильтра:  {args.contrast_photo}")
+    
+    if args.blur_photo:
+        apply_blur_filter(original_photo)  
+    print(f"Использование фильтра размытия:  {args.blur_photo}")
+    
+    if args.noise_photo:
+        apply_noise_filter(original_photo)
+    print(f"Использование медианного фильтра:  {args.noise_photo}")
+    
+    if args.border_photo:
+        apply_border_filter(original_photo)
+    print(f"Использование рамки:  {args.border_photo}")
+    
+    if args.sepia_photo:
+        apply_sepia_filter(original_photo)
+    print(f"Использование фильтра сепии:  {args.sepia_photo}")
+
+     
+
 
 if __name__ == "__main__":
     main()

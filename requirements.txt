@@ -1,3 +1,2 @@
 argparse == 1.4.0
 pillow == 10.2.0
-pip == 23.3.2
